@@ -40,10 +40,6 @@ int norm(float v){
     return (v>=0)?1:-1;
 }
 
-float abs(float a){
-    return (a<0)?-a:a;
-}
-
 float nearest(float a, float b, float v){
     float absA = abs(a);
     float absB = abs(b);

@@ -15,7 +15,7 @@ class Audio{
     public:
     static void initOpenAL();
     static void destroyOpenAL();
-    static ALuint loadSound(const std::string);
+    static ALuint loadSound(std::string);
     static ALuint createSource(ALuint*);
     static ALuint createSource(const std::string);
     static void destroySound(ALuint*);

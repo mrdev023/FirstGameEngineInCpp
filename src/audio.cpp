@@ -3,8 +3,11 @@
 ALCdevice* Audio::device;
 ALCcontext* Audio::context;
 
-ALuint Audio::loadSound(const std::string Filename){
+ALuint Audio::loadSound(std::string Filename){
     // Ouverture du fichier audio avec libsndfile
+    std::string* path = new std::string("res/sounds/");
+    Filename = *path + Filename;
+    delete path;
     SF_INFO FileInfos;
     SNDFILE* File = sf_open(Filename.c_str(), SFM_READ, &FileInfos);
     if (File == NULL){

@@ -49,7 +49,6 @@ void Window::destroyWindow(){
     SDL_GL_DeleteContext ( context ) ; 
     SDL_DestroyWindow(pWindow);
     SDL_Quit();
-    exit(0);
 }
 
 void Window::displayUpdate(){

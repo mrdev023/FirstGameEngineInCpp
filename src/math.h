@@ -3,6 +3,7 @@
 
 #include <math.h> 
 #include <cstddef>
+#include <algorithm>
 
 extern const float PI;
 float lerp(float,float,float);
@@ -15,7 +16,6 @@ float max(float,float);
 float toRadians(float);
 float toDegrees(float);
 int norm(float);
-float abs(float);
 float nearest(float,float,float);
 
 class Vector4f;
@@ -201,6 +201,7 @@ class Quaternion{
     Matrix4f ToMatrix();
     Quaternion NLerp(Quaternion,float,bool);
     Quaternion SLerp(Quaternion,float,bool);
+    Vector3f EulerAngles();
     Vector3f GetForward();
     Vector3f GetBackward();
     Vector3f GetRight();

@@ -24,8 +24,8 @@ Quaternion::Quaternion(float x, float y, float z, float w){
 }
 
 Quaternion::Quaternion(Vector3f axis,float angle){
-    float s = (float) sin(angle / 2);
-	float c = (float) cos(angle / 2);
+    float s = (float) sin(angle / 2.0);
+	float c = (float) cos(angle / 2.0);
 
 	this->x = axis.x * s;
 	this->y = axis.y * s;
@@ -44,22 +44,19 @@ Quaternion::Quaternion(const Quaternion& q,Vector3f axis,float angle){
 }
 
 Quaternion::Quaternion(Vector3f euler){
-    float c1 = (float) cos(euler.x / 2);
-	float s1 = (float) sin(euler.x / 2);
-		
-	float c2 = (float) cos(euler.y / 2);
-	float s2 = (float) sin(euler.y / 2);
-		
-	float c3 = (float) cos(euler.z / 2);
-	float s3 = (float) sin(euler.z / 2);
-		
-	float c1c2 = c1 * c2;
-	float s1s2 = s1 * s2;
-
-	x = c1c2 * s3 + s1s2 * c3;
-	y = s1 * c2 * c3 + c1 * s2 * s3;
-	z = c1 * s2 * c3 - s1 * c2 * s3;
-    w = c1c2 * c3 - s1s2 * s3;
+    double h = euler.y * PI/360.0f;
+	double a = euler.z * PI/360.0f;
+	double b = euler.x * PI/360.0f;
+	double c1 = cos(h);
+	double c2 = cos(a);
+	double c3 = cos(b);
+	double s1 = sin(h);
+	double s2 = sin(a);
+	double s3 = sin(b);
+	w = round((c1*c2*c3 - s1*s2*s3)*100000.0)/100000.0;
+	x = round((s1*s2*c3 + c1*c2*s3)*100000.0)/100000.0;
+	y = round((s1*c2*c3 + c1*s2*s3)*100000.0)/100000.0;
+	z = round((c1*s2*c3 - s1*c2*s3)*100000.0)/100000.0;
 }
 
 Quaternion::Quaternion(Matrix4f rot){
@@ -275,4 +272,36 @@ Vector3f Quaternion::GetUp(){
 
 Vector3f Quaternion::GetDown(){
     return Vector3f(0, -1, 0).Rotate(*this);
+}
+
+Vector3f Quaternion::EulerAngles(){
+	Vector3f euler = Vector3f();
+	double qw = w;
+	double qx = x;
+	double qy = y;
+	double qz = z;
+	double qw2 = qw*qw;
+	double qx2 = qx*qx;
+	double qy2 = qy*qy;
+	double qz2 = qz*qz;
+	double test= qx*qy + qz*qw;
+	if (test > 0.499) {
+		euler.y = 360/PI*atan2(qx,qw);
+		euler.z = 90;
+		euler.x = 0;
+		return euler;  
+	}
+	if (test < -0.499) {
+		euler.y = -360/PI*atan2(qx,qw);
+		euler.z = -90;
+		euler.x = 0;
+		return euler;  
+	}
+	double h = atan2(2*qy*qw-2*qx*qz,1-2*qy2-2*qz2);
+	double a = asin(2*qx*qy+2*qz*qw);
+	double b = atan2(2*qx*qw-2*qy*qz,1-2*qx2-2*qz2);
+	euler.y = round(h*180/PI);
+	euler.z = round(a*180/PI);
+	euler.x = round(b*180/PI);
+	return euler;
 }

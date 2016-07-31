@@ -1,5 +1,7 @@
 #require opengl,glew,glut,glu,al,alc,sndfile library
 
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+
 cmake_minimum_required(VERSION 2.6)
 cmake_policy(SET CMP0015 NEW)
 
