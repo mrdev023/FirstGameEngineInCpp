@@ -128,6 +128,8 @@ GLuint Shader::createShader(const char* vertName,const char* fragName){
     glValidateProgram(program);
     glDeleteShader(vertShader);
     glDeleteShader(fragShader);
+    printf("Vertex Shader '%s' loaded !\n",vertName);
+    printf("Fragment Shader '%s' loaded !\n",fragName);
     return program;
 }
 

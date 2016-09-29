@@ -9,6 +9,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string>
+#include <time.h>
+#include <chrono>
+
+#define NTIME currentNanoTime()
+#define UTIME currentMillisTime()
+
+extern unsigned long deltaTime;
+extern unsigned long updateTime;
+
+unsigned long currentMillisTime();
+unsigned long currentNanoTime();
 
 class Window{
 
@@ -17,7 +28,9 @@ class Window{
     static void destroyWindow();
     static void pollEvent(void(*f)(SDL_Event));
     static void displayUpdate();
+    static void setTitleSuffixe(const char*);
 
+    static std::string title;
     static SDL_Window* pWindow;
     static SDL_Event event;
     static bool closeRequested;

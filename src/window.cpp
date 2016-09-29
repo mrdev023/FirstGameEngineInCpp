@@ -5,6 +5,10 @@ SDL_Event Window::event;
 SDL_GLContext Window::context;
 bool Window::closeRequested = false;
 
+unsigned long deltaTime = 0;
+unsigned long updateTime = 0;
+
+std::string Window::title;
 
 void Window::initWindow(int width,int height,std::string title){
     /* Initialisation simple */
@@ -17,7 +21,10 @@ void Window::initWindow(int width,int height,std::string title){
                                                                   SDL_WINDOWPOS_UNDEFINED,
                                                                   width,
                                                                   height,
-                                                                  SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL);
+                                                                 SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL);
+
+    Window::title = title.c_str();
+
     if(!Window::pWindow){
         fprintf(stderr,"Erreur de création de la fenêtre: %s\n",SDL_GetError());
         exit(-1);
@@ -45,6 +52,13 @@ void Window::initWindow(int width,int height,std::string title){
 
 }
 
+void Window::setTitleSuffixe(const char* t){
+    std::string* a = new std::string(t);
+    *a = title + *a;
+    SDL_SetWindowTitle(Window::pWindow, a->c_str());
+    delete a;
+}
+
 void Window::destroyWindow(){
     SDL_GL_DeleteContext ( context ) ; 
     SDL_DestroyWindow(pWindow);
@@ -64,4 +78,15 @@ void Window::pollEvent(void(*f)(SDL_Event)){
         }
         f(Window::event);
     }
+}
+
+unsigned long currentMillisTime(){
+    return std::chrono::system_clock::now().time_since_epoch() / 
+    std::chrono::milliseconds(1);
+}
+
+unsigned long currentNanoTime(){
+    return std::chrono::system_clock::now().time_since_epoch() / 
+    std::chrono::nanoseconds(1);
+    return 0;
 }

@@ -10,11 +10,25 @@
 #include <sndfile.h>
 #include <vector>
 
+/*
+Class created by MrDev023
+*/
 class Audio{
 
     public:
+    /*
+        Initialise le Device pour lire des pistes audio
+    */
     static void initOpenAL();
+
+    /*
+        Permet de detruire le device
+    */
     static void destroyOpenAL();
+
+    /*
+        Fonction permettant de lire un son puis de retourner l identifiant de la source
+    */
     static ALuint loadSound(std::string);
     static ALuint createSource(ALuint*);
     static ALuint createSource(const std::string);

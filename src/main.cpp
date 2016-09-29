@@ -2,39 +2,44 @@
 #include "audio.h"
 #include "renderer.h"
 
-#include <iostream>
-#include <fstream>
-
 void event(SDL_Event e){
-    
+    switch( e.type ){
+        case SDL_KEYDOWN:
+            switch( e.key.keysym.sym ){
+                
+            }
+            break;
+        case SDL_KEYUP:
+            switch( e.key.keysym.sym ){
+                
+            }
+            break;
+    }
 }
 
 int main(int argc, char** argv){
-    Window::initWindow(800,600,"Test");
-    Audio::initOpenAL();
-    GLuint s = Shader::createShader("test.vert","test.frag");
-    float i = 0;
-    Shader::bindShader(&s);
-    while(!Window::closeRequested){//main loop
-        Shader::setUniform(&s,"a",cos(i));
-        Window::pollEvent(&event);
-
+    Window::initWindow(800,800,"Title");
+    //Texture* t = Texture::createTexture("res/images/2x2_grid.png");
+    Texture* t = Texture::createTexture("res/images/pearl-0003.png");
+    while(!Window::closeRequested){
+        Window::pollEvent(event);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-        glLoadIdentity();
+        Texture::bindTexture(t->id);
         glBegin(GL_QUADS);
-        glVertex2f(-1,-1);
-        glVertex2f(-1,1);
-        glVertex2f(1,1);
-        glVertex2f(1,-1);
+            glColor3f(1,1,1);
+            glTexCoord2f(0,0);
+            glVertex2i(-1,-1);
+            glTexCoord2f(0,t->ratioY);
+            glVertex2i(-1,1);
+            glTexCoord2f(t->ratioX,t->ratioY);
+            glVertex2i(1,1);
+            glTexCoord2f(t->ratioX,0);
+            glVertex2i(1,-1);
         glEnd();
-
         Window::displayUpdate();
-        i+=1/5000.0f;
     }
-    Shader::destroyShader(&s);
-    Audio::destroyOpenAL();
+    delete t;
     Window::destroyWindow();
-
     return 0;
 }
+

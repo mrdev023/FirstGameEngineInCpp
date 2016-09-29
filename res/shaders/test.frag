@@ -1,6 +1,7 @@
-uniform float a;
+#version 150
+
+uniform float y;
 
 void main(void){
-    if(a >= 0)gl_FragColor = vec4(a,0,0,1);
-    else gl_FragColor = vec4(0,-a,0,1);
+    gl_FragColor= vec4(1, 1 - abs(y)/50,1 - abs(y)/50,1);
 }

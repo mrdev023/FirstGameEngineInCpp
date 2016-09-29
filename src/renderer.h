@@ -13,12 +13,46 @@
 #include <sys/stat.h>
 #include <algorithm>
 
+#include "lodepng.h"
+
 #include <SDL2/SDL.h>
 #include <GL/glew.h>
 #include <GL/gl.h>
 #include <GL/glu.h>
 
 bool fileExists(const std::string&);
+
+class Shader;
+class Texture;
+class Image;
+
+class Image{
+    public:
+    unsigned char* data;
+    int width;
+    int height;
+
+    Image(unsigned char*,int,int);
+    ~Image();
+};
+
+class Texture{
+    public:
+    static Texture* createTexture(const char*);
+    static void destroyTexture(GLuint*);
+    static void bindTexture(GLuint*);
+    static void unbindTexture();
+
+    double ratioX;
+    double ratioY;
+    GLuint* id;
+
+    Texture(GLuint,double,double);
+    ~Texture();
+
+    private:
+    static Image* loadTexture(const char*);
+};
 
 class Shader{
     public:

@@ -5,6 +5,8 @@
 #include <cstddef>
 #include <algorithm>
 
+#define byte char
+
 extern const float PI;
 float lerp(float,float,float);
 float cLerp(float,float,float);
