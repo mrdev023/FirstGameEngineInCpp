@@ -13,9 +13,13 @@ set(EXECUTABLE_OUTPUT_PATH bin/${CMAKE_BUILD_TYPE})
 
 #Inclusion de Boost
 
-include_directories(/usr/include)
-
-link_directories(/usr/lib)
+IF (WIN32)
+        include_directories($ENV{MINGW_HOME}/usr/include)
+        link_directories($ENV{MINGW_HOME}/usr/lib)
+ELSE()
+        include_directories(/usr/include)
+        link_directories(/usr/lib)
+ENDIF()
 
 
 
@@ -36,18 +40,37 @@ add_executable(
 
 #Configuration de l'édition de liens
 
-target_link_libraries(
-        main
-        openal
-        alut
-        sndfile
-        SDL2main
-        SDL2
-        SDL2_image
-        SDL2_ttf
-        SDL2_mixer
-        GLEW
-        glut
-        GL
-        GLU
-)
+
+IF (WIN32)
+        target_link_libraries(
+                main
+                openal
+                alut
+                sndfile
+                SDL2main
+                SDL2
+                SDL2_image
+                SDL2_ttf
+                SDL2_mixer
+                glew32
+                glut
+                opengl32
+                glu32
+        ) 
+ELSE()
+        target_link_libraries(
+                main
+                openal
+                alut
+                sndfile
+                SDL2main
+                SDL2
+                SDL2_image
+                SDL2_ttf
+                SDL2_mixer
+                GLEW
+                glut
+                GL
+                GLU
+        ) 
+ENDIF()
