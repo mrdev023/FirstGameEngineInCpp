@@ -1,6 +1,6 @@
-#include "window.h"
-#include "audio.h"
-#include "renderer.h"
+#include "display/window.h"
+#include "audio/audio.h"
+#include "render/renderer.h"
 
 void event(SDL_Event e){
     switch( e.type ){

@@ -1,7 +1,8 @@
 #ifndef RENDERER_H
 #define RENDERER_H
 
-#include "math.h"
+#include "../math/math.h"
+
 
 #include <iostream>
 #include <vector>
@@ -25,6 +26,43 @@ bool fileExists(const std::string&);
 class Shader;
 class Texture;
 class Image;
+class VBO;
+class VAO;
+
+
+class VAO{
+    public:
+    static const int VERTEX_DATA = 0,COLOR_DATA = 1,TEX_COORD_DATA = 2,NORMAL_DATA = 3;
+    std::vector<VBO*> data;
+    GLuint id;
+    GLuint typeRender;
+
+    VAO(GLuint);
+    ~VAO();
+    void addData(int,float*,int);
+    void bufferData();
+    void render2D();
+    void render3D();
+};
+
+class VBO{
+
+    public:
+    GLuint id;
+    GLuint typeRender;
+    std::vector<float> data;
+    int size;
+
+    VBO();
+    VBO(GLuint);
+    ~VBO();
+    void addData(float*,int);
+    void bufferData();
+    void render2D();
+    void render3D();
+    void bindBuffer();
+    void unBindBuffer();
+};
 
 class Image{
     public:

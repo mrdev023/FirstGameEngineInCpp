@@ -6,7 +6,7 @@
 - Maths libraries (Vector 2,3 and 4, Quaternion, Transform  and Matrix4f)
 - Window manager
 - Input manager with SDL_event
-- Multiple renderer (VAO,VBO,DisplayList and Direct Rendering) [coming soon]
+- Multiple renderer (VAO,VBO)
 - Texture
 - Network TCP [coming soon]
 - Network UDP [coming soon]
