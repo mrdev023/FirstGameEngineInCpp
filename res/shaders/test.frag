@@ -1,7 +1,10 @@
-#version 150
+#version 330
 
-uniform float y;
+in vec4 color;
+in vec3 normal;
+in vec2 out_coord_texture;
+uniform sampler2D myTexture;
 
 void main(void){
-    gl_FragColor= vec4(1, 1 - abs(y)/50,1 - abs(y)/50,1);
+    gl_FragColor = color * texture2D(myTexture,out_coord_texture);
 }

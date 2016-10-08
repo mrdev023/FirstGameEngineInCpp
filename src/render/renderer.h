@@ -32,34 +32,40 @@ class VAO;
 
 class VAO{
     public:
-    static const int VERTEX_DATA = 0,COLOR_DATA = 1,TEX_COORD_DATA = 2,NORMAL_DATA = 3;
     std::vector<VBO*> data;
+    unsigned int n;
+    bool isIn3DRender;
     GLuint id;
     GLuint typeRender;
 
-    VAO(GLuint);
+    VAO(GLuint,unsigned int,bool);
     ~VAO();
     void addData(int,float*,int);
     void bufferData();
-    void render2D();
-    void render3D();
+    void render();
 };
 
 class VBO{
 
+    private:
+    void render2D();
+    void render3D();
+    void bufferData2D();
+    void bufferData3D();
+
     public:
     GLuint id;
     GLuint typeRender;
+    bool isIn3DRender;
     std::vector<float> data;
     int size;
 
     VBO();
-    VBO(GLuint);
+    VBO(GLuint,bool);
     ~VBO();
     void addData(float*,int);
     void bufferData();
-    void render2D();
-    void render3D();
+    void render();
     void bindBuffer();
     void unBindBuffer();
 };
