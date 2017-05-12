@@ -1,0 +1,5 @@
+install: make get-deps libsdl2* libglew* libglut* libglew-dev:i386 libsndfile-dev
+
+compiler:
+  - g++
+  - gcc

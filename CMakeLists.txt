@@ -1,8 +1,8 @@
 #require opengl,glew,glut,glu,al,alc,sndfile library
 
 IF (WIN32)
-        SET(CMAKE_C_COMPILER C:/mingw32/bin/)
-        SET(CMAKE_CXX_COMPILER C:/mingw32/bin/)
+        #SET(CMAKE_C_COMPILER C:/cygwin64/bin/)
+        #SET(CMAKE_CXX_COMPILER C:/cygwin64/bin/)
 ENDIF()
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
