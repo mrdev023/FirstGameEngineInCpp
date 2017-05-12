@@ -7,9 +7,9 @@ addons:
     - ubuntu-toolchain-r-test
     - llvm-toolchain-precise-3.6
     packages:
-	- make
-	- libsdl2*
- 	- libglew*
+        - make
+        - libsdl2*
+        - libglew*
 
 # Enable C++ support
 language: cpp
