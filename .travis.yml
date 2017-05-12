@@ -17,6 +17,7 @@ addons:
     - libalut0
     - libglew-dev
     - freeglut3-dev
+    - libopenal-dev
 
 # Enable C++ support
 language: cpp
