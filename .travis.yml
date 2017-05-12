@@ -1,9 +1,5 @@
 #install: make get-deps libsdl2* libglew* libglut* libglew-dev:i386 libsndfile-dev cmake
-matrix:
-  include:
-    - os: linux
-      dist: trusty
-      sudo: required
+dist: trusty
 
 addons:
   apt:
@@ -15,7 +11,7 @@ addons:
     - libegl1-mesa-dev
     - libsdl2-dev
     - libsndfile-dev
-    - freealut
+    - libalut0
   artifacts:
     bucket: glew
     s3_region: "us-east-1"
