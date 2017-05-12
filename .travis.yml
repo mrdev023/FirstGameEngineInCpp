@@ -1,4 +1,9 @@
 #install: make get-deps libsdl2* libglew* libglut* libglew-dev:i386 libsndfile-dev cmake
+matrix:
+  include:
+    - os: linux
+      dist: trusty
+      sudo: required
 
 addons:
   apt:
