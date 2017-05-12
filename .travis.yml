@@ -16,12 +16,7 @@ addons:
     - libsndfile-dev
     - libalut0
     - libglut*
-  artifacts:
-    bucket: glew
-    s3_region: "us-east-1"
-    paths:
-    - $(ls *.zip *.tgz | tr "\n" ":")
-    - $(find doc -type f | tr "\n" ":")
+    - libglew-dev
 
 # Enable C++ support
 language: cpp
