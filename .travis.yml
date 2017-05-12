@@ -1,11 +1,21 @@
-install: make get-deps libsdl2* libglew* libglut* libglew-dev:i386 libsndfile-dev cmake
+#install: make get-deps libsdl2* libglew* libglut* libglew-dev:i386 libsndfile-dev cmake
+
+addons:
+  apt:
+    sources:
+    # add PPAs with more up-to-date toolchains
+    - ubuntu-toolchain-r-test
+    - llvm-toolchain-precise-3.6
+    packages:
+	- make
+	- libsdl2*
+ 	- libglew*
 
 # Enable C++ support
 language: cpp
 
 # Compiler selection
 compiler:
-  - clang
   - gcc
 
 # Build steps
