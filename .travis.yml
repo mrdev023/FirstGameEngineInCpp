@@ -2,14 +2,18 @@
 
 addons:
   apt:
-    sources:
-    # add PPAs with more up-to-date toolchains
-    - ubuntu-toolchain-r-test
-    - llvm-toolchain-precise-3.6
     packages:
-        - make
-        - libsdl2*
-        - libglew*
+    - git
+    - cmake
+    - dos2unix
+    - libosmesa6-dev
+    - libegl1-mesa-dev
+  artifacts:
+    bucket: glew
+    s3_region: "us-east-1"
+    paths:
+    - $(ls *.zip *.tgz | tr "\n" ":")
+    - $(find doc -type f | tr "\n" ":")
 
 # Enable C++ support
 language: cpp
