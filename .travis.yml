@@ -9,12 +9,10 @@ addons:
     - dos2unix
     - libosmesa6-dev
     - libegl1-mesa-dev
-    - libsdl2-image-dev
-    - libsdl2-ttf-dev
-    - libsdl2-mixer-dev
+    - libsdl2*
     - libsndfile-dev
     - libalut0
-    - libglew-dev:i386
+    - libglew-dev
   artifacts:
     bucket: glew
     s3_region: "us-east-1"
