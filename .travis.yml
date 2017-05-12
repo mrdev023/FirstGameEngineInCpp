@@ -1,5 +1,13 @@
-install: make get-deps libsdl2* libglew* libglut* libglew-dev:i386 libsndfile-dev
+install: make get-deps libsdl2* libglew* libglut* libglew-dev:i386 libsndfile-dev cmake
 
+# Enable C++ support
+language: cpp
+
+# Compiler selection
 compiler:
-  - g++
+  - clang
   - gcc
+
+# Build steps
+script:
+  - cmake . && make
