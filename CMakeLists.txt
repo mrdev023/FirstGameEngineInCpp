@@ -14,7 +14,8 @@ cmake_policy(SET CMP0015 NEW)
 project(TestSDL2)
 set(EXECUTABLE_OUTPUT_PATH bin/${CMAKE_BUILD_TYPE})
 
-
+#Inclusion de Module CMake
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake_module/")
 
 #Inclusion de Boost
 
@@ -32,6 +33,7 @@ ELSE()
         find_package(GLU REQUIRED)
         find_package(GLUT REQUIRED)
         find_package(OpenAL REQUIRED)
+	find_package(ALUT REQUIRED)
         include_directories(/usr/include)
         link_directories(/usr/lib)
 ENDIF()
