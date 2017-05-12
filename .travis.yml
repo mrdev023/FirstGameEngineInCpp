@@ -15,7 +15,7 @@ addons:
     - libsdl2-mixer-dev
     - libsndfile-dev
     - libalut0
-    - libglut-dev
+    - freeglut3-dev
     - libglew-dev
 
 # Enable C++ support
