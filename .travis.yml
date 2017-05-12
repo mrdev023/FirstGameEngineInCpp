@@ -8,6 +8,8 @@ addons:
     - dos2unix
     - libosmesa6-dev
     - libegl1-mesa-dev
+    - libsdl2*
+    - libsndfile-dev
   artifacts:
     bucket: glew
     s3_region: "us-east-1"
