@@ -15,8 +15,8 @@ addons:
     - libsdl2-mixer-dev
     - libsndfile-dev
     - libalut0
-    - freeglut3-dev
     - libglew-dev
+    - freeglut3-dev
 
 # Enable C++ support
 language: cpp
