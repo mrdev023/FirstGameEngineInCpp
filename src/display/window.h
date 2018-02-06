@@ -2,9 +2,20 @@
 #define WINDOW_H
 
 #include <SDL2/SDL.h>
+
 #include <GL/glew.h>
-#include <GL/gl.h>
-#include <GL/glu.h>
+#ifdef _WIN32
+    
+#elif __APPLE__
+    #include "TargetConditionals.h"
+    #if TARGET_OS_MAC
+        #include <OpenGL/gl.h>
+        #include <OpenGL/glu.h>
+    #endif
+#elif __linux__
+    #include <GL/gl.h>
+    #include <GL/glu.h>
+#endif
 
 #include <stdio.h>
 #include <stdlib.h>

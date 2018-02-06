@@ -1,8 +1,19 @@
 #ifndef AUDIO_H
 #define AUDIO_H
 
-#include <AL/al.h>
-#include <AL/alc.h>
+#ifdef _WIN32
+    
+#elif __APPLE__
+    #include "TargetConditionals.h"
+    #if TARGET_OS_MAC
+        #include <OpenAL/al.h>
+        #include <OpenAL/alc.h>
+    #endif
+#elif __linux__
+    #include <AL/al.h>
+    #include <AL/alc.h>
+#endif
+
 #include <AL/alut.h>
 #include <string>
 #include <stdio.h>

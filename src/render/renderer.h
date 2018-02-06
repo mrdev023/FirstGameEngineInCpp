@@ -9,7 +9,11 @@
 #include <sstream>
 #include <iterator>
 #include <fstream>
-#include <malloc.h>
+#if defined(__MACH__)
+    #include <stdlib.h>
+#else 
+    #include <malloc.h>
+#endif
 #include <string>
 #include <sys/stat.h>
 #include <algorithm>
@@ -18,8 +22,18 @@
 
 #include <SDL2/SDL.h>
 #include <GL/glew.h>
-#include <GL/gl.h>
-#include <GL/glu.h>
+#ifdef _WIN32
+    
+#elif __APPLE__
+    #include "TargetConditionals.h"
+    #if TARGET_OS_MAC
+        #include <OpenGL/gl.h>
+        #include <OpenGL/glu.h>
+    #endif
+#elif __linux__
+    #include <GL/gl.h>
+    #include <GL/glu.h>
+#endif
 
 bool fileExists(const std::string&);
 

@@ -17,6 +17,19 @@ set(EXECUTABLE_OUTPUT_PATH bin/${CMAKE_BUILD_TYPE})
 #Inclusion de Module CMake
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake_module/")
 
+IF (APPLE) 
+        execute_process(COMMAND BREW="$(brew --prefix openal-soft)")
+        include_directories($ENV{BREW}/include)
+        link_directories($ENV{BREW}/lib)
+        execute_process(COMMAND GLUT="$(brew --prefix freeglut)")
+        include_directories($ENV{GLUT}/include)
+        link_directories($ENV{GLUT}/lib)
+        execute_process(COMMAND GLEW="$(brew --prefix glew)")
+        include_directories($ENV{GLEW}/include)
+        link_directories($ENV{GLEW}/lib)
+        link_directories(/System/Library/Frameworks/OpenGL.framework/Libraries/)
+ENDIF()
+
 #Inclusion de Boost
 
 IF (WIN32)
